@@ -3,7 +3,7 @@ this will save u from adjusting the images later
 
 # App Store Screenshots Generator
 
-A skill for AI-powered coding agents (Claude Code, Cursor, Windsurf, etc.) that generates production-ready App Store screenshots for iOS apps. It scaffolds a Next.js project, designs advertisement-style screenshots, and exports them at all required Apple resolutions.
+A skill for AI-powered coding agents (Claude Code, Cursor, Windsurf, etc.) that generates production-ready App Store screenshots for iOS apps. It scaffolds a Next.js project, designs advertisement-style screenshots, exports them at all required Apple resolutions, supports localized screenshot sets including Chinese, and can generate localized App Store metadata that fits iOS length limits.
 
 ![Example output — Bloom coffee tracking app](example.png)
 
@@ -13,6 +13,9 @@ A skill for AI-powered coding agents (Claude Code, Cursor, Windsurf, etc.) that 
 - Scaffolds a minimal Next.js project (or works within an existing one)
 - Designs each screenshot as an **advertisement** — not a UI showcase
 - Writes compelling copy using proven App Store copywriting patterns
+- Supports multi-locale screenshot copy and export flows (`en-US`, `zh-CN`, `zh-TW`, `ja-JP`, etc.), with one export directory per locale and side-by-side preview on the page
+- Generates App Store marketing metadata per locale: app name, subtitle, promotional text, description, and keywords
+- Validates metadata against Apple length limits, including keyword byte limits for CJK locales
 - Renders screenshots at full resolution with a built-in iPhone mockup
 - Exports PNGs at all 4 Apple-required sizes (6.9", 6.5", 6.3", 6.1")
 
@@ -62,7 +65,7 @@ Or just tell Claude Code what you need:
 > Build App Store screenshots for my app
 ```
 
-Claude will ask you about your app's screenshots, brand colors, font, features, style direction, and number of slides before building anything.
+Claude will ask you about your app's screenshots, brand colors, font, features, style direction, target locales, number of slides, and whether you also want localized App Store metadata before building anything.
 
 ## What gets scaffolded
 
@@ -81,7 +84,7 @@ project/
 └── ...
 ```
 
-The entire generator is a **single `page.tsx` file**. Run the dev server, open the browser, click any screenshot to export it as a PNG.
+The entire generator is a **single `page.tsx` file**. Run the dev server, open the browser, review all requested locales on the same page, and click any screenshot to export it as a PNG.
 
 ## Export sizes
 
@@ -110,6 +113,8 @@ Screenshots are designed at 1320x2868 (largest) and scaled down for smaller size
 - **Copy follows the "one second" rule** — readable at thumbnail size in the App Store
 - **Layouts vary** — no two adjacent slides share the same phone placement
 - **Style is user-driven** — no hardcoded colors, gradients, or fonts
+- **Localization is built in** — copy, fonts, and export naming must work for non-English locales like `zh-CN`
+- **Metadata is constrained** — generated names, subtitles, promo text, descriptions, and keywords must fit Apple's current limits per locale
 
 ## Requirements
 
